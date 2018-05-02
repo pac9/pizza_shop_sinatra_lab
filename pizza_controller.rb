@@ -8,12 +8,12 @@ require_relative('./models/pizza_order.rb')
 get '/pizza_orders' do
   @orders = PizzaOrder.all()
   erb(:index)
-  # CREATE order
 end
-
+#New order
 get '/pizza_orders/new' do
   erb(:new)
 end
+#Create order
 post '/pizza_orders' do
   @order = PizzaOrder.new(params)
   @order.save()
@@ -25,6 +25,16 @@ get '/pizza_orders/:id' do
   @order = PizzaOrder.find(params[:id])
   erb(:show)
 end
+
+#DELETE
+post '/pizza_orders/:id/delete' do
+  @order = PizzaOrder.find(params[:id])
+  @order.delete
+  erb(:delete)
+
+end
+
+
 
 
 # UPDATE existing orders
